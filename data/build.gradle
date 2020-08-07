@@ -34,4 +34,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    api "com.squareup.retrofit2:retrofit:$rootProject.ext.rxVersion"
+    api "com.squareup.retrofit2:retrofit-converters:$rootProject.ext.rxVersion"
+    api "com.squareup.retrofit2:retrofit-adapters:$rootProject.ext.rxVersion"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.ext.rxVersion"
+
+    api "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    api "io.reactivex.rxjava2:rxjava:2.2.9"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:4.8.0"
+
+    implementation "androidx.room:room-runtime:$rootProject.ext.roomVersion"
+    implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.ext.roomVersion"
+
+    api "com.google.dagger:dagger-android:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
 }

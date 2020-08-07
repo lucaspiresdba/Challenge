@@ -24,3 +24,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    rxVersion = '2.6.1'
+    roomVersion = '2.2.5'
+    daggerVersion = '2.15'
+}
