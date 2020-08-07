@@ -1,28 +1,30 @@
 package br.com.lucaspires.data.source.remote
 
+import br.com.lucaspires.data.model.remote.CharactersResponse
+import br.com.lucaspires.data.model.remote.ContentResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MarvelAPI {
-    @GET("/v1/public/characters")
+    @GET("/characters")
     fun getAllCharacters(
         @Query("orderBy") orderBy: String,
         @Query("offset") offset: Int
-    ): Single<Nothing>
+    ): Single<CharactersResponse>
 
-    @GET("/v1/public/characters/{characterId}/comics")
+    @GET("/characters/{characterId}/comics")
     fun getComics(
         @Path("characterId") characterId: Int,
         @Query("orderBy") orderBy: String,
         @Query("offset") offset: Int
-    ): Single<Nothing>
+    ): Single<ContentResponse>
 
-    @GET("/v1/public/characters/{characterId}/series")
+    @GET("/characters/{characterId}/series")
     fun getSeries(
         @Path("characterId") characterId: Int,
         @Query("orderBy") orderBy: String,
         @Query("offset") offset: Int
-    ): Single<Nothing>
+    ): Single<ContentResponse>
 }
