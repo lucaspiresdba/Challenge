@@ -7,11 +7,11 @@ import br.com.lucaspires.challengexp.presenter.FavoriteFragmentView
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = [PresenterProvides::class])
 class FragmentProvider {
     @Provides
-    fun favoriteProvier(): FavoriteFragmentView = FavoriteFragment()
+    internal fun favoriteProvier(fragment: FavoriteFragment): FavoriteFragmentView = fragment
 
     @Provides
-    fun characterProvider(): CharacterFragmentView = CharactersFragment()
+    internal fun characterProvider(fragment: CharactersFragment): CharacterFragmentView = fragment
 }

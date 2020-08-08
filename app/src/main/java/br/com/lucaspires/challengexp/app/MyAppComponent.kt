@@ -2,6 +2,8 @@ package br.com.lucaspires.challengexp.app
 
 import android.app.Application
 import br.com.lucaspires.challengexp.di.FragmentModule
+import br.com.lucaspires.challengexp.di.FragmentProvider
+import br.com.lucaspires.challengexp.di.PresenterProvides
 import br.com.lucaspires.domain.di.UseCaseModule
 import dagger.BindsInstance
 import dagger.Component
@@ -13,7 +15,9 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         FragmentModule::class,
-        UseCaseModule::class
+        UseCaseModule::class,
+        PresenterProvides::class,
+        FragmentProvider::class
     ]
 )
 

@@ -11,7 +11,8 @@ interface MarvelAPI {
     @GET("characters")
     fun getAllCharacters(
         @Query("orderBy") orderBy: String,
-        @Query("offset") offset: Int
+        @Query("offset") offset: Int,
+        @Query("name") name:String?
     ): Single<CharactersResponse>
 
     @GET("characters/{characterId}/comics")

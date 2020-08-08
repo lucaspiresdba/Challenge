@@ -7,6 +7,23 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/et_filter_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/buscar"
+        app:layout_constraintEnd_toStartOf="@+id/button_fetch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_fetch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buscar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="0dp"
@@ -14,13 +31,12 @@
         app:layout_constraintBottom_toTopOf="@+id/progress_more"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/et_filter_name">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_characters"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-           />
+            android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

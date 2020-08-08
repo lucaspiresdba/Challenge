@@ -7,5 +7,5 @@ import io.reactivex.Single
 interface CharacterUseCase {
     fun getComicsOfCharacters(characterId: Int, offset: Int): Single<ContentModel>
     fun getSeriesOfCharacters(characterId: Int, offset: Int): Single<ContentModel>
-    fun getAllCharacters(offset: Int): Single<CharactersContentModel>
+    fun getAllCharacters(offset: Int, name: String?): Single<CharactersContentModel>
 }

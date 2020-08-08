@@ -9,11 +9,12 @@ import io.reactivex.Single
 
 internal class CharacterUseCaseImp(private val webService: MarvelAPI) : CharacterUseCase {
 
-    override fun getAllCharacters(offset: Int): Single<CharactersContentModel> =
+    override fun getAllCharacters(offset: Int, name: String?): Single<CharactersContentModel> =
         webService
             .getAllCharacters(
                 "name",
-                offset * 20
+                offset * 20,
+                name
             )
             .map { it.data?.toCharactersModel() }
 
