@@ -28,5 +28,5 @@ task clean(type: Delete) {
 ext{
     rxVersion = '2.6.1'
     roomVersion = '2.2.5'
-    daggerVersion = '2.15'
+    daggerVersion = '2.16'
 }

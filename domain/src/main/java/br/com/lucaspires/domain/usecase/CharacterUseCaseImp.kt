@@ -7,7 +7,7 @@ import br.com.lucaspires.domain.toCharactersModel
 import br.com.lucaspires.domain.toContentModel
 import io.reactivex.Single
 
-class CharacterUseCaseImp(private val webService: MarvelAPI) : CharacterUseCase {
+internal class CharacterUseCaseImp(private val webService: MarvelAPI) : CharacterUseCase {
 
     override fun getAllCharacters(offset: Int): Single<CharactersContentModel> =
         webService

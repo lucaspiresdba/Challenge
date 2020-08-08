@@ -8,20 +8,20 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MarvelAPI {
-    @GET("/characters")
+    @GET("characters")
     fun getAllCharacters(
         @Query("orderBy") orderBy: String,
         @Query("offset") offset: Int
     ): Single<CharactersResponse>
 
-    @GET("/characters/{characterId}/comics")
+    @GET("characters/{characterId}/comics")
     fun getComics(
         @Path("characterId") characterId: Int,
         @Query("orderBy") orderBy: String,
         @Query("offset") offset: Int
     ): Single<ContentResponse>
 
-    @GET("/characters/{characterId}/series")
+    @GET("characters/{characterId}/series")
     fun getSeries(
         @Path("characterId") characterId: Int,
         @Query("orderBy") orderBy: String,
