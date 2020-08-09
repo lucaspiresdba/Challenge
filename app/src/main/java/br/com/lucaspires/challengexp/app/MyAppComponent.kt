@@ -1,6 +1,6 @@
 package br.com.lucaspires.challengexp.app
 
-import android.app.Application
+import br.com.lucaspires.challengexp.di.AppModule
 import br.com.lucaspires.challengexp.di.FragmentModule
 import br.com.lucaspires.challengexp.di.FragmentProvider
 import br.com.lucaspires.challengexp.di.PresenterProvides
@@ -17,7 +17,8 @@ import javax.inject.Singleton
         FragmentModule::class,
         UseCaseModule::class,
         PresenterProvides::class,
-        FragmentProvider::class
+        FragmentProvider::class,
+        AppModule::class
     ]
 )
 
@@ -25,7 +26,7 @@ interface MyAppComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun application(myApp: Application): Builder
+        fun application(myApp: MyApp): Builder
         fun build(): MyAppComponent
     }
 

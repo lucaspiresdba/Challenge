@@ -1,5 +1,8 @@
 package br.com.lucaspires.data.di.module
 
+import android.content.Context
+import android.net.ConnectivityManager
+import br.com.lucaspires.data.CheckConnectionInterceptor
 import br.com.lucaspires.data.source.remote.MarvelAPI
 import br.com.lucaspires.data.toMD5
 import dagger.Module
@@ -10,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module
 class ServiceModule {
@@ -34,9 +38,10 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun providesIntercepter(): OkHttpClient {
+    fun providesIntercepter(context: Context): OkHttpClient {
         return OkHttpClient.Builder()
             .apply {
+                addInterceptor(CheckConnectionInterceptor(context))
                 addInterceptor(HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 })

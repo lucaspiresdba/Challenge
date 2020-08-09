@@ -1,9 +1,6 @@
 package br.com.lucaspires.challengexp.di
 
-import br.com.lucaspires.challengexp.presenter.CharacterFragmentPresenter
-import br.com.lucaspires.challengexp.presenter.CharacterFragmentView
-import br.com.lucaspires.challengexp.presenter.FavoriteFragmentPresenter
-import br.com.lucaspires.challengexp.presenter.FavoriteFragmentView
+import br.com.lucaspires.challengexp.presenter.*
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import dagger.Module
 import dagger.Provides
@@ -16,7 +13,7 @@ class PresenterProvides {
         useCase: CharacterUseCase,
         view: CharacterFragmentView
     ): CharacterFragmentPresenter {
-        return CharacterFragmentPresenter(useCase, view)
+        return CharacterFragmentPresenterImp(useCase, view)
     }
 
     @Provides
