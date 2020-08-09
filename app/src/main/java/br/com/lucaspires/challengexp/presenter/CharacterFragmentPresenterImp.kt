@@ -24,17 +24,15 @@ class CharacterFragmentPresenterImp(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe {
-                    if (offset > 0) {
-                        view.showBottomLoading()
-                    } else {
-                        view.showLoading()
+                    when (offset) {
+                        0 -> view.showLoading()
+                        else -> view.showBottomLoading()
                     }
                 }
                 .doFinally {
-                    if (offset > 0) {
-                        view.hideBottomLoading()
-                    } else {
-                        view.hideLoading()
+                    when (offset) {
+                        0 -> view.hideLoading()
+                        else -> view.hideBottomLoading()
                     }
                 }
                 .subscribe({

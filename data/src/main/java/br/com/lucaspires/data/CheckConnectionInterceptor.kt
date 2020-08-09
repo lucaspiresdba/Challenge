@@ -22,5 +22,5 @@ class CheckConnectionInterceptor(private val context: Context) : Interceptor {
         return chain.proceed(chain.request())
     }
 
-    inner class NoNetworkExpcetion(message: String) : IOException(message)
+    class NoNetworkExpcetion(message: String) : IOException(message)
 }
