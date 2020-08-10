@@ -18,12 +18,14 @@ interface MarvelAPI {
     @GET("characters/{characterId}/comics")
     fun getComics(
         @Path("characterId") characterId: Int,
-        @Query("orderBy") orderBy: String
+        @Query("orderBy") orderBy: String,
+        @Query("offset") offset: Int
     ): Single<ContentResponse>
 
     @GET("characters/{characterId}/series")
     fun getSeries(
         @Path("characterId") characterId: Int,
-        @Query("orderBy") orderBy: String
+        @Query("orderBy") orderBy: String,
+        @Query("offset") offset: Int
     ): Single<ContentResponse>
 }

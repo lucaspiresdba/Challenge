@@ -5,12 +5,11 @@ import br.com.lucaspires.data.source.remote.MarvelAPI
 import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.model.CharactersContentModel
 import br.com.lucaspires.domain.model.ContentModel
+import br.com.lucaspires.domain.model.ItemContentModel
 import br.com.lucaspires.domain.toCharactersModel
 import br.com.lucaspires.domain.toContentModel
 import br.com.lucaspires.domain.toEntity
-import br.com.lucaspires.domain.toModel
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 
 internal class CharacterUseCaseImp(
@@ -23,14 +22,14 @@ internal class CharacterUseCaseImp(
             .getAllCharacters("name", offset * 20, name)
             .map { it.data?.toCharactersModel() }
 
-    override fun getComicsOfCharacters(characterId: Int, offset: Int): Single<ContentModel> =
+    override fun getComicsOfCharacters(characterId: Int, offset: Int): Single<List<ItemContentModel>?> =
         webService
-            .getComics(characterId,"title")
+            .getComics(characterId,"title", offset * 20)
             .map { it.data?.toContentModel() }
 
-    override fun getSeriesOfCharacters(characterId: Int, offset: Int): Single<ContentModel> =
+    override fun getSeriesOfCharacters(characterId: Int, offset: Int): Single<List<ItemContentModel>?> =
         webService
-            .getSeries(characterId, "title")
+            .getSeries(characterId, "title", offset * 20)
             .map { it.data?.toContentModel() }
 
     override fun favoriteCharacter(characterModel: CharacterModel): Completable {
@@ -40,6 +39,6 @@ internal class CharacterUseCaseImp(
     override fun getFavorites(): Single<List<CharacterModel>>{
         return dao
             .getAllCharacters()
-            .map { it.toModel() }
+            .map { it.toCharactersModel() }
     }
 }

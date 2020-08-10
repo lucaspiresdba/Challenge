@@ -1,5 +1,6 @@
 package br.com.lucaspires.challengexp.iu.adapter
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.lucaspires.challengexp.R
+import br.com.lucaspires.challengexp.iu.activity.CharacterDetailsActivity
 import br.com.lucaspires.challengexp.loadImage
 import br.com.lucaspires.domain.model.CharacterModel
 
@@ -50,6 +52,15 @@ class AdapterFavoriteCharacters : RecyclerView.Adapter<AdapterFavoriteCharacters
                         ), PorterDuff.Mode.SRC_IN
                     )
                 }
+            }
+            image?.setOnClickListener {
+                image?.context?.startActivity(
+                    Intent(
+                        image?.context,
+                        CharacterDetailsActivity::class.java
+                    ).apply {
+                        putExtra(CharacterDetailsActivity.CHARACTER_DATE, item)
+                    })
             }
         }
     }

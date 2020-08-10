@@ -21,7 +21,7 @@ import javax.inject.Inject
 class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharacterInterface {
 
     companion object {
-        private const val INITIAL_OFFSET = 0
+        const val INITIAL_OFFSET = 0
     }
 
     @Inject
@@ -66,6 +66,7 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharact
 
         button_fetch.setOnClickListener {
             getData()
+            it.isEnabled = false
         }
 
         swipe_refresh.setOnRefreshListener {
@@ -105,6 +106,7 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharact
     override fun hideLoading() {
         progress_loading.visibility = GONE
         swipe_refresh.isRefreshing = false
+        button_fetch.isEnabled = true
     }
 
     override fun showLoading() {
@@ -136,12 +138,12 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharact
         container_feedback_user.visibility = INVISIBLE
     }
 
-    override fun onStop() {
-        super.onStop()
-        presenter.onStop()
-    }
-
     override fun saveToFavorite(characterModel: CharacterModel) {
         presenter.saveToFavorite(characterModel)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsub()
     }
 }

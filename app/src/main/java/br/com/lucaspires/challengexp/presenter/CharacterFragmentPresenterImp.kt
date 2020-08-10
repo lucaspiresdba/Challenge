@@ -51,7 +51,7 @@ class CharacterFragmentPresenterImp(
         )
     }
 
-    override fun onStop() {
+    override fun unsub() {
         disposable.dispose()
     }
 

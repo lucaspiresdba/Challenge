@@ -25,7 +25,7 @@ class FavoriteFragmentPresenterImp(
         )
     }
 
-    override fun onStop() {
+    override fun unsub() {
         disposable.clear()
     }
 }

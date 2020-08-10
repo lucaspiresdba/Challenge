@@ -4,6 +4,6 @@ import br.com.lucaspires.domain.model.CharacterModel
 
 interface CharacterFragmentPresenter {
     fun getCharacters(offset: Int, name: String)
-    fun onStop()
+    fun unsub()
     fun saveToFavorite(characterModel: CharacterModel)
 }

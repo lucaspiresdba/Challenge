@@ -23,4 +23,12 @@ class PresenterProvides {
     ): FavoriteFragmentPresenter {
         return FavoriteFragmentPresenterImp(useCase, view)
     }
+
+    @Provides
+    fun detailsPresenter(
+        useCase: CharacterUseCase,
+        view: CharacterDetailsActivityView
+    ): CharacterDetailsActivityPresenter {
+        return CharacterDetailsActivityPresenterImp(useCase, view)
+    }
 }

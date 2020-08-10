@@ -1,8 +1,8 @@
 package br.com.lucaspires.challengexp.app
 
 import br.com.lucaspires.challengexp.di.AppModule
-import br.com.lucaspires.challengexp.di.FragmentModule
-import br.com.lucaspires.challengexp.di.FragmentProvider
+import br.com.lucaspires.challengexp.di.ViewsModule
+import br.com.lucaspires.challengexp.di.ViewsProvides
 import br.com.lucaspires.challengexp.di.PresenterProvides
 import br.com.lucaspires.domain.di.UseCaseModule
 import dagger.BindsInstance
@@ -14,10 +14,10 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        FragmentModule::class,
+        ViewsModule::class,
         UseCaseModule::class,
         PresenterProvides::class,
-        FragmentProvider::class,
+        ViewsProvides::class,
         AppModule::class
     ]
 )

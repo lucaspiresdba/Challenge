@@ -40,6 +40,19 @@ class FavoriteFragment : BaseFragment(), FavoriteFragmentView {
     private fun setupView() {
         gridLayout = GridLayoutManager(activity, 2, LinearLayoutManager.VERTICAL, false)
 
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
+            override fun onChanged() {
+                super.onChanged()
+                if(adapter.itemCount == 0){
+                    rv_favorites.visibility = View.INVISIBLE
+                    container_feedback_fav_user.visibility = View.VISIBLE
+                }else{
+                    rv_favorites.visibility = View.VISIBLE
+                    container_feedback_fav_user.visibility = View.INVISIBLE
+                }
+            }
+        })
+
         rv_favorites.let {
             it.layoutManager = gridLayout
             it.adapter = adapter
@@ -48,17 +61,15 @@ class FavoriteFragment : BaseFragment(), FavoriteFragmentView {
 
     override fun sendData(listCharacters: List<CharacterModel>) {
         adapter.addItems(listCharacters)
-        rv_favorites.visibility = View.VISIBLE
-        container_feedback_fav_user.visibility = View.INVISIBLE
-    }
-
-    override fun onStop() {
-        super.onStop()
-        presenter.onStop()
     }
 
     override fun onResume() {
         super.onResume()
         presenter.getFavorites()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsub()
     }
 }

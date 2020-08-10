@@ -32,10 +32,10 @@ fun CharacterDataContainer.toCharactersModel(): CharactersContentModel {
     )
 }
 
-fun ContentDataContainer.toContentModel(): ContentModel {
+fun ContentDataContainer.toContentModel(): List<ItemContentModel> {
     val listContent = arrayListOf<ItemContentModel>()
 
-    this.results?.findLast {
+    this.results?.forEach {
         listContent.add(
             ItemContentModel(
                 id = it?.id,
@@ -45,13 +45,7 @@ fun ContentDataContainer.toContentModel(): ContentModel {
         )
     }
 
-    return ContentModel(
-        offset = this.offset,
-        limit = this.limit,
-        total = this.total,
-        count = this.count,
-        contentItems = listContent
-    )
+    return listContent
 }
 
 fun CharacterModel.toEntity(): CharacterEntity {
@@ -63,7 +57,7 @@ fun CharacterModel.toEntity(): CharacterEntity {
     )
 }
 
-fun List<CharacterEntity>.toModel(): List<CharacterModel> {
+fun List<CharacterEntity>.toCharactersModel(): List<CharacterModel> {
     val listResult = arrayListOf<CharacterModel>()
     this.forEach {
         listResult.add(CharacterModel(
