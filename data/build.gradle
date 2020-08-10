@@ -58,4 +58,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
+    implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
+
 }

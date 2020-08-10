@@ -45,6 +45,7 @@ class CharacterFragmentPresenterImp(
                         }
                         else -> view.error()
                     }
+                    it.printStackTrace()
                 })
         )
     }

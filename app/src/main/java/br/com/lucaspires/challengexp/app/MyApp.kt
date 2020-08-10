@@ -3,6 +3,7 @@ package br.com.lucaspires.challengexp.app
 import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
+import com.facebook.stetho.Stetho
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -18,6 +19,7 @@ class MyApp : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     override fun onCreate() {
         super.onCreate()
+        Stetho.initializeWithDefaults(this)
         DaggerMyAppComponent.builder().application(this).build().inject(this)
     }
 
