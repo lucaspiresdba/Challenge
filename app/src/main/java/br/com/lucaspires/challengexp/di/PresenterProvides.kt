@@ -21,6 +21,6 @@ class PresenterProvides {
         useCase: CharacterUseCase,
         view: FavoriteFragmentView
     ): FavoriteFragmentPresenter {
-        return FavoriteFragmentPresenter(useCase, view)
+        return FavoriteFragmentPresenterImp(useCase, view)
     }
 }

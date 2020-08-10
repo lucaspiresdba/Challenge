@@ -9,27 +9,23 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.lucaspires.challengexp.R
-import br.com.lucaspires.challengexp.iu.fragment.AdapterCharacterInterface
 import br.com.lucaspires.challengexp.loadImage
 import br.com.lucaspires.domain.model.CharacterModel
 
-class AdapterCharacterList(private val adapterCharacterInterface: AdapterCharacterInterface) : RecyclerView.Adapter<AdapterCharacterList.ItemViewHolder>() {
+class AdapterFavoriteCharacters : RecyclerView.Adapter<AdapterFavoriteCharacters.ItemViewHolder>() {
 
     private val arrayItems = ArrayList<CharacterModel>()
 
     fun addItems(list: List<CharacterModel>) {
-        arrayItems.addAll(list)
-        notifyItemInserted(arrayItems.size - 1)
-    }
-
-    fun clearList() {
         arrayItems.clear()
+        arrayItems.addAll(list)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ItemViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.adapter_character_list, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.adapter_character_list, parent, false)
         )
 
     override fun getItemCount() = arrayItems.size
@@ -54,14 +50,6 @@ class AdapterCharacterList(private val adapterCharacterInterface: AdapterCharact
                         ), PorterDuff.Mode.SRC_IN
                     )
                 }
-            }
-
-            favorite?.setOnClickListener {
-                adapterCharacterInterface.saveToFavorite(item)
-            }
-
-            image?.setOnClickListener {
-
             }
         }
     }

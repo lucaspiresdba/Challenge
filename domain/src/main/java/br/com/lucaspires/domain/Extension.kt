@@ -1,5 +1,6 @@
 package br.com.lucaspires.domain
 
+import br.com.lucaspires.data.model.local.CharacterEntity
 import br.com.lucaspires.data.model.remote.CharacterDataContainer
 import br.com.lucaspires.data.model.remote.ContentDataContainer
 import br.com.lucaspires.domain.model.CharacterModel
@@ -51,4 +52,27 @@ fun ContentDataContainer.toContentModel(): ContentModel {
         count = this.count,
         contentItems = listContent
     )
+}
+
+fun CharacterModel.toEntity(): CharacterEntity {
+    return CharacterEntity(
+        id = this.id,
+        thumbnail = this.thumbnail,
+        name = this.name,
+        description = this.description
+    )
+}
+
+fun List<CharacterEntity>.toModel(): List<CharacterModel> {
+    val listResult = arrayListOf<CharacterModel>()
+    this.forEach {
+        listResult.add(CharacterModel(
+            id = it.id,
+            thumbnail = it.thumbnail,
+            name = it.name,
+            description = it.description,
+            isFavorite = true
+        ))
+    }
+    return listResult
 }

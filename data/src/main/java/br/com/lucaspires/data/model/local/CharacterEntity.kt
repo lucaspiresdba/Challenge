@@ -12,6 +12,5 @@ data class CharacterEntity(
     val thumbnail: String? = null,
     val name: String? = null,
     val description: String? = null,
-    val comics: List<ContentItemEntity>? = null,
-    val series: List<ContentItemEntity>? = null
+    val isFavorite: Boolean? = true
 )

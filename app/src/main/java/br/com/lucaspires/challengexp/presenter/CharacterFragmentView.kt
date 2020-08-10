@@ -10,4 +10,6 @@ interface CharacterFragmentView {
     fun hideLoading()
     fun showLoading()
     fun showBottomLoading()
+    fun saveSuccess()
+    fun saveError()
 }

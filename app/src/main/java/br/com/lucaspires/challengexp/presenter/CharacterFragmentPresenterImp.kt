@@ -1,6 +1,7 @@
 package br.com.lucaspires.challengexp.presenter
 
 import br.com.lucaspires.data.CheckConnectionInterceptor.NoNetworkExpcetion
+import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -52,6 +53,18 @@ class CharacterFragmentPresenterImp(
 
     override fun onStop() {
         disposable.dispose()
+    }
+
+    override fun saveToFavorite(characterModel: CharacterModel) {
+        disposable.add(
+            characterUseCase.favoriteCharacter(characterModel)
+                .subscribe({
+                    view.saveSuccess()
+                }, {
+                    view.saveError()
+                    it.printStackTrace()
+                })
+        )
     }
 
 }

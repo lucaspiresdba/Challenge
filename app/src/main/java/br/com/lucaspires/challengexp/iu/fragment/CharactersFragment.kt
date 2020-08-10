@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@ import br.com.lucaspires.domain.model.CharacterModel
 import kotlinx.android.synthetic.main.fragment_characters.*
 import javax.inject.Inject
 
-class CharactersFragment : BaseFragment(), CharacterFragmentView {
+class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharacterInterface {
 
     companion object {
         private const val INITIAL_OFFSET = 0
@@ -28,7 +29,7 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView {
 
     lateinit var gridLayout: GridLayoutManager
 
-    private val adapter = AdapterCharacterList()
+    private val adapter = AdapterCharacterList(this)
 
     private lateinit var recyclerViewScrollListener: EndlessRecyclerViewScrollListener
 
@@ -107,13 +108,21 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView {
     }
 
     override fun showLoading() {
-        if(!swipe_refresh.isRefreshing){
+        if (!swipe_refresh.isRefreshing) {
             progress_loading.visibility = VISIBLE
         }
     }
 
     override fun showBottomLoading() {
         progress_more.visibility = VISIBLE
+    }
+
+    override fun saveSuccess() {
+        Toast.makeText(requireContext(), "Salvo com sucesso", Toast.LENGTH_LONG).show()
+    }
+
+    override fun saveError() {
+        Toast.makeText(requireContext(), "Erro ao salvar", Toast.LENGTH_LONG).show()
     }
 
     private fun showFeedbackUser(feedback: String) {
@@ -130,5 +139,9 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView {
     override fun onStop() {
         super.onStop()
         presenter.onStop()
+    }
+
+    override fun saveToFavorite(characterModel: CharacterModel) {
+        presenter.saveToFavorite(characterModel)
     }
 }
