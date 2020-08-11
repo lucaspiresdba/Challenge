@@ -1,8 +1,10 @@
 package br.com.lucaspires.challengexp.presenter
 
 import br.com.lucaspires.data.CheckConnectionInterceptor.NoNetworkExpcetion
+import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.model.CharactersContentModel
 import br.com.lucaspires.domain.usecase.CharacterUseCase
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -89,10 +91,30 @@ internal class CharacterFragmentPresenterImpTest {
         Mockito.verify(view).error()
     }
 
+    @Test
+    fun shouldBeSuccessToSaveFav() {
+        Mockito.`when`(useCase.favoriteCharacter(getData().characters!![0])).thenReturn(Completable.complete())
+
+        presenter.saveToFavorite(getData().characters!![0])
+
+        Mockito.verify(useCase).favoriteCharacter(getData().characters!![0])
+        Mockito.verify(view).saveSuccess()
+    }
+
+    @Test
+    fun shouldBeErrorToSaveFav() {
+        Mockito.`when`(useCase.favoriteCharacter(getData().characters!![0])).thenReturn(Completable.error(Exception()))
+
+        presenter.saveToFavorite(getData().characters!![0])
+
+        Mockito.verify(useCase).favoriteCharacter(getData().characters!![0])
+        Mockito.verify(view).saveError()
+    }
+
     private fun getData() =
         CharactersContentModel(
             0, 0, 0, 0,
-            listOf()
+            listOf(CharacterModel(1, "", "", "", true))
         )
 
     @After

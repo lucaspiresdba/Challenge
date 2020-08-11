@@ -1,6 +1,5 @@
 package br.com.lucaspires.challengexp.presenter
 
-import android.util.Log
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -19,7 +19,6 @@ class CharacterDetailsActivityPresenterImp(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-
                     it?.let { view.populateComics(it) }
                 },
                     {
