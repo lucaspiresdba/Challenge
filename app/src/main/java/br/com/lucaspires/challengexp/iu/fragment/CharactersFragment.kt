@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.lucaspires.challengexp.EndlessRecyclerViewScrollListener
 import br.com.lucaspires.challengexp.R
 import br.com.lucaspires.challengexp.iu.adapter.AdapterCharacterList
-import br.com.lucaspires.challengexp.presenter.CharacterFragmentPresenter
-import br.com.lucaspires.challengexp.presenter.CharacterFragmentView
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentPresenter
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentView
 import br.com.lucaspires.domain.model.CharacterModel
 import kotlinx.android.synthetic.main.fragment_characters.*
 import javax.inject.Inject
 
-class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharacterInterface {
+class CharactersFragment : BaseFragment(),
+    CharacterFragmentView, AdapterCharacterInterface {
 
     companion object {
         const val INITIAL_OFFSET = 0
@@ -144,6 +145,6 @@ class CharactersFragment : BaseFragment(), CharacterFragmentView, AdapterCharact
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.unsub()
+        presenter.unsubscribe()
     }
 }

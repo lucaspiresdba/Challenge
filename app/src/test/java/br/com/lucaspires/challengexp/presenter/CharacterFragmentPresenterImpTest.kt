@@ -1,5 +1,8 @@
 package br.com.lucaspires.challengexp.presenter
 
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentPresenter
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentPresenterImp
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentView
 import br.com.lucaspires.data.CheckConnectionInterceptor.NoNetworkExpcetion
 import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.model.CharactersContentModel
@@ -32,7 +35,11 @@ internal class CharacterFragmentPresenterImpTest {
         MockitoAnnotations.initMocks(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        presenter = CharacterFragmentPresenterImp(useCase, view)
+        presenter =
+            CharacterFragmentPresenterImp(
+                useCase,
+                view
+            )
     }
 
     @Test

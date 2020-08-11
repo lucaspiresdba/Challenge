@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,14 +14,15 @@ import br.com.lucaspires.challengexp.getHeroData
 import br.com.lucaspires.challengexp.iu.adapter.AdapterContent
 import br.com.lucaspires.challengexp.iu.fragment.CharactersFragment.Companion.INITIAL_OFFSET
 import br.com.lucaspires.challengexp.loadImage
-import br.com.lucaspires.challengexp.presenter.CharacterDetailsActivityPresenter
-import br.com.lucaspires.challengexp.presenter.CharacterDetailsActivityView
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityPresenter
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityView
 import br.com.lucaspires.domain.model.ItemContentModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_character_detail.*
 import javax.inject.Inject
 
-class CharacterDetailsActivity : AppCompatActivity(), CharacterDetailsActivityView {
+class CharacterDetailsActivity : AppCompatActivity(),
+    CharacterDetailsActivityView {
     companion object {
         const val CHARACTER_DATE = "characterdata"
     }
@@ -124,6 +124,6 @@ class CharacterDetailsActivity : AppCompatActivity(), CharacterDetailsActivityVi
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.unsub()
+        presenter.unsubscribe()
     }
 }

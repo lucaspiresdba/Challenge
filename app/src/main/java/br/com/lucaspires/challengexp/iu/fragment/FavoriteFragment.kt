@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.lucaspires.challengexp.R
 import br.com.lucaspires.challengexp.iu.adapter.AdapterFavoriteCharacters
-import br.com.lucaspires.challengexp.presenter.FavoriteFragmentPresenter
-import br.com.lucaspires.challengexp.presenter.FavoriteFragmentView
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentPresenter
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentView
 import br.com.lucaspires.domain.model.CharacterModel
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import javax.inject.Inject
 
-class FavoriteFragment : BaseFragment(), FavoriteFragmentView {
+class FavoriteFragment : BaseFragment(),
+    FavoriteFragmentView {
 
     @Inject
     lateinit var presenter: FavoriteFragmentPresenter
@@ -35,6 +36,7 @@ class FavoriteFragment : BaseFragment(), FavoriteFragmentView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
+        presenter.getFavorites()
     }
 
     private fun setupView() {
@@ -70,6 +72,6 @@ class FavoriteFragment : BaseFragment(), FavoriteFragmentView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.unsub()
+        presenter.unsubscribe()
     }
 }

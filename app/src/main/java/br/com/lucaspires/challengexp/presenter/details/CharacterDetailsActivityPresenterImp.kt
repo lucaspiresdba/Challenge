@@ -1,21 +1,20 @@
-package br.com.lucaspires.challengexp.presenter
+package br.com.lucaspires.challengexp.presenter.details
 
 import android.util.Log
+import br.com.lucaspires.challengexp.presenter.BasePresenter
 import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class CharacterDetailsActivityPresenterImp(
     private val useCase: CharacterUseCase,
     private val view: CharacterDetailsActivityView
-) : CharacterDetailsActivityPresenter {
-
-    private val disposable = CompositeDisposable()
+) : BasePresenter(),
+    CharacterDetailsActivityPresenter {
 
     override fun getComics(characterId: Int, offset: Int) {
-        disposable.add(
+
             useCase.getComicsOfCharacters(characterId, offset)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -24,12 +23,12 @@ class CharacterDetailsActivityPresenterImp(
                 },
                     {
                         it.printStackTrace()
-                    })
-        )
+                    }).also { disp.add(it) }
+
     }
 
     override fun getSeries(characterId: Int, offset: Int) {
-        disposable.add(
+
             useCase.getSeriesOfCharacters(characterId, offset)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -38,23 +37,22 @@ class CharacterDetailsActivityPresenterImp(
                 },
                     {
                         Log.e("aaa", it.toString())
-                    })
-        )
+                    }).also { disp.add(it) }
+
     }
 
-    override fun unsub() {
-        disposable.dispose()
+    override fun unsubscribe() {
+        unSub()
     }
 
     override fun saveFav(characterModel: CharacterModel) {
-        disposable.add(
+
             useCase.favoriteCharacter(characterModel)
                 .subscribe({
                     view.saveSuccess()
                 }, {
                     view.saveError()
                     it.printStackTrace()
-                })
-        )
+                }).also { disp.add(it) }
     }
 }

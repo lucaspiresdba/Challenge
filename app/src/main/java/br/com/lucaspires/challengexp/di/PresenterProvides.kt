@@ -1,6 +1,14 @@
 package br.com.lucaspires.challengexp.di
 
-import br.com.lucaspires.challengexp.presenter.*
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentPresenter
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentPresenterImp
+import br.com.lucaspires.challengexp.presenter.characters.CharacterFragmentView
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityPresenter
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityPresenterImp
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityView
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentPresenter
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentPresenterImp
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentView
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import dagger.Module
 import dagger.Provides
@@ -13,7 +21,10 @@ class PresenterProvides {
         useCase: CharacterUseCase,
         view: CharacterFragmentView
     ): CharacterFragmentPresenter {
-        return CharacterFragmentPresenterImp(useCase, view)
+        return CharacterFragmentPresenterImp(
+            useCase,
+            view
+        )
     }
 
     @Provides
@@ -21,7 +32,10 @@ class PresenterProvides {
         useCase: CharacterUseCase,
         view: FavoriteFragmentView
     ): FavoriteFragmentPresenter {
-        return FavoriteFragmentPresenterImp(useCase, view)
+        return FavoriteFragmentPresenterImp(
+            useCase,
+            view
+        )
     }
 
     @Provides
@@ -29,6 +43,9 @@ class PresenterProvides {
         useCase: CharacterUseCase,
         view: CharacterDetailsActivityView
     ): CharacterDetailsActivityPresenter {
-        return CharacterDetailsActivityPresenterImp(useCase, view)
+        return CharacterDetailsActivityPresenterImp(
+            useCase,
+            view
+        )
     }
 }

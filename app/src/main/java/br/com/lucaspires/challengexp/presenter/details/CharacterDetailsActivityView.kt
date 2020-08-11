@@ -1,4 +1,4 @@
-package br.com.lucaspires.challengexp.presenter
+package br.com.lucaspires.challengexp.presenter.details
 
 import br.com.lucaspires.domain.model.ItemContentModel
 

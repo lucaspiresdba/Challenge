@@ -1,5 +1,8 @@
 package br.com.lucaspires.challengexp.presenter
 
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityPresenter
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityPresenterImp
+import br.com.lucaspires.challengexp.presenter.details.CharacterDetailsActivityView
 import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.model.CharactersContentModel
 import br.com.lucaspires.domain.usecase.CharacterUseCase
@@ -31,7 +34,11 @@ internal class CharacterDetailsActivityPresenterImpTest {
         MockitoAnnotations.initMocks(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        presenter = CharacterDetailsActivityPresenterImp(useCase, view)
+        presenter =
+            CharacterDetailsActivityPresenterImp(
+                useCase,
+                view
+            )
     }
 
     @After

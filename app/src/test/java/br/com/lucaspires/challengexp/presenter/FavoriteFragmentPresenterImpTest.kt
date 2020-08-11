@@ -1,5 +1,8 @@
 package br.com.lucaspires.challengexp.presenter
 
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentPresenter
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentPresenterImp
+import br.com.lucaspires.challengexp.presenter.favorites.FavoriteFragmentView
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
@@ -27,7 +30,11 @@ internal class FavoriteFragmentPresenterImpTest{
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        presenter = FavoriteFragmentPresenterImp(useCase, view)
+        presenter =
+            FavoriteFragmentPresenterImp(
+                useCase,
+                view
+            )
     }
 
     @After
