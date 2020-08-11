@@ -1,5 +1,6 @@
 package br.com.lucaspires.challengexp.presenter
 
+import android.util.Log
 import br.com.lucaspires.domain.model.CharacterModel
 import br.com.lucaspires.domain.usecase.CharacterUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +14,7 @@ class CharacterDetailsActivityPresenterImp(
 
     private val disposable = CompositeDisposable()
 
-    override fun getComics(characterId: Int, offset:Int) {
+    override fun getComics(characterId: Int, offset: Int) {
         disposable.add(
             useCase.getComicsOfCharacters(characterId, offset)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -27,7 +28,7 @@ class CharacterDetailsActivityPresenterImp(
         )
     }
 
-    override fun getSeries(characterId: Int, offset:Int) {
+    override fun getSeries(characterId: Int, offset: Int) {
         disposable.add(
             useCase.getSeriesOfCharacters(characterId, offset)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -36,7 +37,7 @@ class CharacterDetailsActivityPresenterImp(
                     it?.let { view.populateSeries(it) }
                 },
                     {
-                        it.printStackTrace()
+                        Log.e("aaa", it.toString())
                     })
         )
     }

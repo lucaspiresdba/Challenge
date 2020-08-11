@@ -51,6 +51,7 @@ class ServiceModule {
                         .addQueryParameter("ts", "1")
                         .addQueryParameter("apikey", API_KEY_PUBLIC)
                         .addQueryParameter("hash", ("1$API_KEY_PRIVATE$API_KEY_PUBLIC").toMD5())
+                        .addQueryParameter("limit", "20")
                         .build()
                     chain.proceed(originalChain.newBuilder().url(url).build())
                 }

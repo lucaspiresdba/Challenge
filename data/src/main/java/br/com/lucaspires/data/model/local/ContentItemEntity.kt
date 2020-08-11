@@ -8,5 +8,7 @@ data class ContentItemEntity(
     @PrimaryKey
     val id: Int? = null,
     val title: String? = null,
-    val thumbnail: String? = null
+    val thumbnail: String? = null,
+    val characterId: Int? = null,
+    val type: String? = null
 )

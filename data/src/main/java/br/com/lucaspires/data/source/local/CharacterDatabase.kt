@@ -12,4 +12,6 @@ import br.com.lucaspires.data.model.local.ContentItemEntity
 )
 abstract class CharacterDatabase : RoomDatabase() {
     abstract fun characterDao(): CharactersDAO
+    abstract fun seriesDao(): SeriesDAO
+    abstract fun comicsDao(): ComicsDAO
 }
